@@ -3,14 +3,13 @@ import User from "../models/user.model.js";
 
 export const protectedRoute = async (req, res, next) => {
   try {
-    // const token = req.headers.cookies;
+    // const token2 = req.cookies.jwt;
     const cookies = req.headers.cookie; // Get the cookie string
     const token = cookies
       .split("; ")
       .find((cookie) => cookie.startsWith("jwt="))
       ?.split("=")[1];
 
-    console.log(token, "token in middleeare");
     if (!token) {
       return res
         .status(400)

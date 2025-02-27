@@ -4,7 +4,6 @@ import bcrypt from "bcryptjs";
 import { generateToken } from "../lib/utils.js";
 import cloudinary from "../lib/cloudinary.js";
 export const signup = async (req, res) => {
-  console.log("inside api signup");
   const { email, fullName, password } = req.body;
   try {
     if (!email && !fullName && !password) {
@@ -99,7 +98,6 @@ export const updateProfile = async (req, res) => {
   }
 };
 export const checkAuth = async (req, res) => {
-  console.log(req.user, "re status");
   try {
     return res.status(200).json(req.user);
   } catch (error) {
