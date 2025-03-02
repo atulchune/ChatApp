@@ -2,71 +2,86 @@
 @tailwind components;
 @tailwind utilities; */
 @import "tailwindcss";
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@plugin "daisyui";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
+/* Default border color */
+.input-field {
+  border: 2px solid #ccc; /* Default light gray border */
+  font-size: 16px;
+  transition: border-color 0.3s ease;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+ /* Smooth transition */
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Change border color to orange when focused */
+.input-field:focus {
+  border-color: orange; /* Border turns orange on focus */
+  outline: none; /* Remove the default outline (optional) */
+}
+
+/* Custom CSS to handle the pseudo-element and transition */
+.hover-a {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.hover-a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--primary-color,#FF9F43); /* Define your primary color */
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.hover-a:hover::after {
+  transform: scale(1);
+}
+
+.hover-a:hover {
+  color: var(--primary-color,#FF9F43) !important; /* Color change on hover */
+}
+
+
+/* index.css */
+@layer components {
+  .btn-login {
+    /* Tailwind utilities */
+    @apply w-full font-bold text-sm text-white mt-1 px-4 py-2 transition-all duration-500 ease-in-out;
+
+    /* Custom background and border with primary color */
+    background-color: #FF9F43; /* Use primary color */
+    border-color: #FF9F43; /* Use primary color for the border */
+    /* Custom styles */
+    margin-top: 5px;
   }
-  a:hover {
-    color: #747bff;
+
+  .btn-login:hover {
+    /* Hover styles */
+    color: #FF9F43;
+    box-shadow: 0 50px 0 0 inset rgba(255, 255, 255, 1) !important;
+    border: 2px #FF9F43 solid;
+
   }
-  button {
-    background-color: #f9f9f9;
+
+  .btn-send {
+    /* Tailwind utilities */
+    @apply  font-bold text-sm text-white px-4 py-2 transition-all duration-500 ease-in-out;
+
+    /* Custom background and border with primary color */
+    background-color: #FF9F43; /* Use primary color */
+    border-color: #FF9F43; /* Use primary color for the border */
+    /* Custom styles */
+  }
+  .btn-send:hover {
+    /* Hover styles */
+    color: #FF9F43;
+    box-shadow: 0 50px 0 0 inset rgba(255, 255, 255, 1) !important;
+    border: 2px #FF9F43 solid;
+
   }
 }

@@ -1,10 +1,11 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js"
+import cloudinary from "../lib/cloudinary.js";
+import { getReceiverSocketId, io } from "../lib/socket.js";
 export const getUsersForSidebar = async (req, res) => {
   try {
     const userID = req.user._id;
     const filterUsers = await User.find({ _id: { $ne: userID } }).select("-password");
-
     return res.status(200).json(filterUsers)
 
   } catch (error) {
@@ -40,17 +41,20 @@ export const sendMessage = async (req, res) => {
     let imageUrl;
     if (image) {
       const uploadResponse = await cloudinary.uploader.upload(image)
-       imageUrl = uploadResponse.secure_url
+      imageUrl = uploadResponse.secure_url
     }
     const newMessages = new Message({
       senderId,
       receiverId,
       text,
-      image:imageUrl,
+      image: imageUrl,
     })
 
     await newMessages.save()
-// todo :relatime functionality socket .io
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessages);
+    }
     return res.status(201).json(newMessages)
   } catch (error) {
     console.log("Internal server Error in sendMessages ", error.message);
