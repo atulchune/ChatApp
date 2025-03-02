@@ -1,0 +1,87 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Default border color */
+.input-field {
+  border: 2px solid #ccc; /* Default light gray border */
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  border-radius: 8px;
+ /* Smooth transition */
+}
+
+/* Change border color to orange when focused */
+.input-field:focus {
+  border-color: orange; /* Border turns orange on focus */
+  outline: none; /* Remove the default outline (optional) */
+}
+
+/* Custom CSS to handle the pseudo-element and transition */
+.hover-a {
+  position: relative;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.hover-a::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--primary-color,#FF9F43); /* Define your primary color */
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.hover-a:hover::after {
+  transform: scale(1);
+}
+
+.hover-a:hover {
+  color: var(--primary-color,#FF9F43) !important; /* Color change on hover */
+}
+
+
+/* index.css */
+@layer components {
+  .btn-login {
+    /* Tailwind utilities */
+    @apply w-full font-bold text-sm text-white mt-1 px-4 py-2 transition-all duration-500 ease-in-out;
+
+    /* Custom background and border with primary color */
+    background-color: #FF9F43; /* Use primary color */
+    border-color: #FF9F43; /* Use primary color for the border */
+    /* Custom styles */
+    margin-top: 5px;
+  }
+
+  .btn-login:hover {
+    /* Hover styles */
+    color: #FF9F43;
+    box-shadow: 0 50px 0 0 inset rgba(255, 255, 255, 1) !important;
+    border: 2px #FF9F43 solid;
+
+  }
+
+  .btn-send {
+    /* Tailwind utilities */
+    @apply  font-bold text-sm text-white px-4 py-2 transition-all duration-500 ease-in-out;
+
+    /* Custom background and border with primary color */
+    background-color: #FF9F43; /* Use primary color */
+    border-color: #FF9F43; /* Use primary color for the border */
+    /* Custom styles */
+  }
+  .btn-send:hover {
+    /* Hover styles */
+    color: #FF9F43;
+    box-shadow: 0 50px 0 0 inset rgba(255, 255, 255, 1) !important;
+    border: 2px #FF9F43 solid;
+
+  }
+}
