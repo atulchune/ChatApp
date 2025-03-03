@@ -135,7 +135,7 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-gray-700 text-white py-4 px-6">
           <div className="flex flex-col space-y-4">
-            <div className="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+            <div className="flex items-center space-x-2 cursor-pointer hover:text-gray-400" onClick={handleHome}>
               <MessageCircle size={20} />
               <span>Chats</span>
             </div>
@@ -143,11 +143,11 @@ const Navbar = () => {
               <Bell size={20} />
               <span>Notifications</span>
             </div>
-            <div className="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
-              <Settings size={20} />
-              <span>Settings</span>
+            <div className="flex items-center space-x-2 cursor-pointer hover:text-gray-400" onClick={handleProfileClick}>
+            <User size={16} />
+              <span>Profile</span>
             </div>
-            <div className="flex items-center space-x-2 cursor-pointer hover:text-gray-400">
+            <div className="flex items-center space-x-2 cursor-pointer hover:text-gray-400" onClick={handleLogoutClick}>
               <LogOut size={20} />
               <span>Logout</span>
             </div>
