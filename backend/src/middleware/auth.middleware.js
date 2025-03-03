@@ -5,10 +5,14 @@ export const protectedRoute = async (req, res, next) => {
   try {
     // const token2 = req.cookies.jwt;
     const cookies = req.headers.cookie; // Get the cookie string
-    const token = cookies
-      .split("; ")
-      .find((cookie) => cookie.startsWith("jwt="))
-      ?.split("=")[1];
+    const token =await  cookies
+    ? cookies
+        .split("; ")
+        .find((cookie) => cookie.startsWith("jwt="))
+        ?.split("=")[1]  // Use optional chaining to handle undefined result
+    : null;
+    // console.log("Cookies:", req.cookies);  // Add this line to log cookies
+    // const token = req.cookies.jwt;
 
     if (!token) {
       return res
